@@ -1,0 +1,419 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[a4paper, total={6in, 8in}, margin=1.3in, bottom=1in]{geometry}
+\usepackage[letterspace=-2]{microtype}
+\usepackage{setspace} 
+\usepackage{indentfirst}
+\usepackage{amsmath}
+\usepackage{multirow}
+\newcommand{\latex}{\LaTeX\ }
+\newcommand{\tex}{\TeX\ }
+\usepackage{bera}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[boxruled,vlined,linesnumbered,noresetcount]{algorithm2e}
+\usepackage[font=large]{caption}
+\usepackage{subcaption}
+%\usepackage{float}
+\usepackage{bigints}
+\usepackage{environ}
+%\usepackage[backend=biber]{biblatex}
+\usepackage{cite}
+\usepackage{floatrow}
+%\floatsetup[figure]{capposition=bottom}
+%\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage{qtree}
+\usepackage{epigraph}
+
+%\addbibresource{References.bib}
+
+\SetKwInput{KwInput}{Input}
+\SetKwInput{KwOutput}{Output}
+
+\renewcommand{\baselinestretch}{1}  %%WHY THIS IS NOT ! BY DEFAULT
+\title{\vspace{5.2cm} \textbf{\Huge Software Systems Lab: OutLab 5 \\[1ex] \latex (80 marks)}}
+\author{\\  \LARGE Hackermenn \\ \\  \large 180050003 \\  \large 180050070 \\ \large 180050092 \\ \large 180050117}
+\date{ 12 September 2019}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\newgeometry{total={6in, 8in}, margin=1.2in, bottom=1in}
+\clearpage
+\setcounter{page}{1}
+
+\tableofcontents
+
+\pagebreak
+\fontdimen2\font=.6ex
+This is a \LaTeX document for the course \textbf{Software Systems Lab} with course code \textit{CS 251}. You need to replicate the document. Spacing need not be matched perfectly but page numbers should be. \textbf {1 mark is for the title page.} Bonus marks will be given only if you score full (80/80) in the rest.
+
+\section{Introduction (4 marks)}  
+%\indent 
+\setlength{\parindent}{1.5ex}
+%\indent
+\fontdimen2\font=0.5ex
+\textbf{\latex} is a word processor and document markup language. It is distinguished from typical word processors such as Microsoft Word and Apple Pages in that the writer uses plain text as opposed to formatted text, relying on markup tagging conventions to define the general structure of a document (such as article, book, and letter), to stylise text throughout a document (such as \textbf{bold} and italic), and to add to add citations and cross-referencing. A \textbf{\TeX} distribution such as \textbf{\tex Live} or \textbf{MikTeX} is used to produce an output file (such as PDF or DVI) suitable for printing or digital distribution. 
+\\ \par
+\fontdimen2\font=0.5ex
+\textbf{\latex}is used for the communication and publication of scientific documents in many fields, including mathematics, physics, computer science, statistics, economics, and political science. It also has a prominent role in the preparation and publication of books and articles that contain complex multilingual materials, such as Sanskrit and Arabic. \textbf{\latex}uses the TeX typesetting program for formatting its output, and is itself written in the TeX macro language.  
+\\ \par 
+\fontdimen2\font=0.6ex
+\textbf{\latex}is widely used in academia. \textbf{\latex}can be used as a standalone document preparation system, or as an intermediate format. In the latter role, for example, it is often used as part of a pipeline for translating DocBook and other XML-based formats to PDF. The typesetting system offers programmable desktop publishing features and extensive facilities for automating most aspects of typesetting and desktop publishing, including numbering and cross-referencing of tables and figures, chapter and section headings, the inclusion of graphics, page layout, indexing and bibliographies.
+\\ \par 
+Below are some of the basic packages which you’ll be using. For other
+required packages, search over the net :).  
+
+\subsection{graphicx package}
+\renewcommand{\baselinestretch}{.8}
+\fontdimen2\font=0.6ex
+\noindent
+This package is used to import tables, and figure in the document. Our
+document type is article, and we are currently using a4 type paper with the
+following margin geometry: (total=\{6in, 8in\}, margin=1.2in, bottom=1in),
+which is specified in the beginning.
+\subsection{amssymb package}
+\renewcommand{\baselinestretch}{.8}
+\fontdimen2\font=0.6ex
+\noindent
+This package is used to import mathematical symbols in the document. We
+encapsulate the mathematical equations and symbols under \$, and they are
+changed to maths symbols.
+\section{Pointers (3 + 2 + 1) marks}
+Here we are using \textbf{itemize} to generate unordered list.
+
+\begin{itemize}%[label={\Large\textbullet}]
+\setlength{\itemsep}{2em}
+\renewcommand{\labelitemi}{\large$\bullet$}
+\item \latex typesets a file of text using the TEX program.
+\item \latex is widely used in academia for the communication and publication
+of scientific documents in many fields, including mathematics, physics,
+computer science, statistics, economics and political science.
+\item \latex can be used as a standalone document preparation system or as an
+intermediate format.
+\item \textbf{We have used renewcommand for the bullets to be bigger.}
+\item Look at the \textbf{item separation space}, and \textbf{change} it accordingly.
+\end{itemize}
+
+For ordered lists we use \textbf{enumerate}.
+\renewcommand{\labelenumi}{\Roman{enumi}}
+\begin{enumerate}
+\item \latex typesets a file of text using the TEX program.
+\item \latex is widely used in academia for the communication and publication
+of scientific documents in many fields, including mathematics, physics,
+computer science, statistics, economics and political science.
+\item \latex can be used as a standalone document preparation system or as an intermediate format.
+\item \latex is intended to provide a high-level language that accesses the power of TeX in an easier way for writers.
+\end{enumerate}
+
+\begin{enumerate}[label=(\alph*)]
+\item \latex typesets a file of text using the TEX program.
+\item \latex is widely used in academia for the communication and publication of scientific documents in many fields, including mathematics, physics, computer science, statistics, economics and political science.
+\end{enumerate}
+
+Following is another type of a pointer (\textbf{description}).
+\begin{description}[leftmargin=\parindent,labelindent=\parindent]
+\item[CS 213] Data Structures and Algorithm
+\item[CS 215] Data Analysis and Interpretation
+\item[CS 251] Software Systems Lab
+\end{description}
+
+\section{Mathematical formulae and notations (15 marks)}
+\subsection{Equation Array (4 marks)}
+\noindent
+\begin{eqnarray}%\label{eq1}
+cos^3\theta + sin^3\theta & = &  (cos\theta + sin\theta)(cos2\theta - cos\theta sin\theta)   \\  
+& = & (cos\theta + sin\theta)(1 - cos\theta sin\theta) \\
+& = & (cos\theta + sin\theta)(1/2)(2-2cos\theta sin\theta)(3) \\
+& = & (1/2)(cos\theta + sin\theta)(2-sin2\theta)
+\end{eqnarray}
+\subsection{Prepositional Formulae using Various Operators (2 marks)}
+\noindent
+\begin{flalign*}
+(\exists x)(\varphi(x) \land \psi(x))  \longleftrightarrow ((\exists x)\varphi(x) \land (\exists x)\psi(x)) &&
+\end{flalign*}
+\vspace{-1.5em}
+\begin{flalign*}
+(\exists x)(\varphi(x) \land \psi(x))  \longrightarrow ((\exists x)\varphi(x) \land (\exists x)\varphi(x) \land (\exists x)\psi(x)) &&
+\end{flalign*}
+\subsection{Alphabets (3 marks + 1 mark for table)}
+\begin{center}
+    \begin{tabular}{|c|c|}
+    \hline
+    Binary Operators: & $\times \otimes \oplus \cup \cap$ \\
+    &\\
+    \hline
+    Relation Operators: & $\subset$ $\supset$ $\subseteq $ $\supseteq $ $<$ $>$ \\
+    &\\
+    \hline
+    Others: & $\int \oint \sum \prod$ \\
+    &\\
+    \hline
+    \end{tabular}{}
+\end{center}
+\subsection{Mathematical Formulas (5 marks)}
+%\begin{flalign*}
+%\renewcommand{\labelenumi}{\arabic{enumi}}
+\begin{enumerate}[label=\arabic*.]
+\item  $ \displaystyle \int_a^b x^3 dx = \left. \frac{1}{4}x^4 \right |_a^b $
+
+\item $ \displaystyle \frac{\pi}{4} = 4 \sum_{n=0}^{\infty}\frac{(-1)^n}{(2n+1)5^{2n+1}} - \sum_{n=0}^{\infty}\frac{(-1)^n}{(2n+1)239^{2n+1}} $
+
+\item $ \displaystyle \pi = \frac{3\sqrt{3}}{4} - 24\sum_{n=0}^{\infty} \frac{\frac{(2n)!}{n}}{2n+1(2n+1)4^{2n+1}} $
+
+\item $ \displaystyle \frac{1}{\pi} = \frac{2\sqrt{2}}{9801} \sum_{n=0}^\infty \frac{(4n)!(1103+26390n)}{(n)!^4 396^{4n}} $
+
+\item $  \sum_{i=0}^{[\frac{n}{2}]} \binom{{x_{i,i+1}^{i^2}}}  {[\frac{i+3}{3}]} \frac{\sqrt{\mu(i)^\frac{3}{2} (i^2 - 1)}}{\sqrt[3]{\rho(i)-2}+ \sqrt[3]{\rho(i)-1}}$
+\end{enumerate}
+%\end{flalign*}
+\pagebreak
+\section{Tables (10 marks)}
+\noindent
+To combine rows a package must be imported with in your preamble, then you can use the XXXXXXX command in your document. The table below includes mathematical notations, which you can produce by embedding the expression in \$ \$ delimiters. For subscript, use underscore and for superscript, use carrot.\\ 
+
+\begin{table}[H]
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{center}
+  \resizebox{0.9\textwidth}{!}{%
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+
+    \cline{3-11}
+    \multicolumn{1}{c}{}&\multicolumn{1}{c}{}&\multicolumn{5}{|c|}{\textbf{Basic Properties}}&\multicolumn{4}{|c|}{\textbf{Readability}}\\
+    \cline{3-11}
+    \multicolumn{1}{c}{}&\multicolumn{1}{c|}{}&\textbf{WC}&\textbf{SC}&\textbf{C-W}&\textbf{S-W}&\textbf{W-S}&\textbf{FK}&\textbf{GF}&\textbf{SMOG}&\textbf{LEX}\\
+    \hline
+    \multirow{2}{0.11\textwidth}{\textit{$Baseline$}}&Mean&0.84&0.41&\textbf{0.56}&\textbf{0.46}&\textbf{0.55}&\textbf{0.60}&0.56&0.57&0.63\\
+    \cline{2-11}
+    &SD&0.07&0.08&0.06&0.07&0.05&0.05&0.06&0.07&0.05\\
+    \hline
+    \hline
+    \multirow{2}{0.11\textwidth}{\textit{$ScaComp_h$}}&Mean&0.89&0.46&0.53&0.43&0.53&0.58&0.54&0.56&0.62\\
+    \cline{2-11}
+    &SD&0.05&0.08&0.05&0.06&0.06&0.05&0.05&0.06&0.05\\
+    \hline
+    \hline
+    \multirow{2}{0.11\textwidth}{\textit{$ScaComp_l$}}&Mean&\textbf{0.92}&\textbf{0.48}&0.55&0.45&0.53&0.59&\textbf{0.58}&\textbf{0.61}&\textbf{0.64}\\
+    \cline{2-11}
+    &SD&0.04&0.07&0.05&0.04&0.05&0.04&0.04&0.04&0.04\\
+    \hline
+    \end{tabular}%
+  }
+\end{center}
+  \caption{\normalsize Table depicting the use of both multirow and multicolumn}
+\end{table}%
+%\par
+{\Large In table 1 above, we try to demonstrate all the features required to be demonstrated in a table. We use multiple newline, we use a package to enable the use of multiple rows, and multiple columns in the table. Additionally, We have also drawn lines from specific column to column. We also use box resizing with a width specifier for resizing the box within the limits of the document, and avoid any overflow.}
+\pagebreak
+\section{Image Insert (7 + 7 marks)}
+Now, we will import images side by side in the same document. \par
+\begin{figure}[H]
+\begin{floatrow}
+\ffigbox{\caption{Screenshot: Mobile Interface}}
+{
+  %\begin{figure}
+  \includegraphics[width=0.4\textwidth]{./1.jpg}
+  %\end{figure}
+}
+\ffigbox{\caption{Screenshot: Generated Notification}}
+{
+  %\begin{figure}
+  \includegraphics[width=0.4\textwidth]{./2.jpg}
+  %\end{figure}
+}
+\end{floatrow}
+\end{figure}
+%\begin{figure}[H]
+%  \centering
+%  \begin{minipage}[b]{0.4\textwidth}
+%    \includegraphics[width=\textwidth]{./1.jpg}
+%    \caption{Screenshot: Mobile Interface}
+%  \end{minipage}
+%  \hfill
+%  \begin{minipage}[b]{0.4\textwidth}
+%    \includegraphics[width=\textwidth]{./2.jpg}
+%    \caption{Screenshot: Generated Notification}
+%  \end{minipage}
+%\end{figure}
+The images have been put in, and they are side by side in the same document
+on the same page. We have used the package \textbf{floatrow} and \textbf{graphicx} to import
+images on Page 6. \par
+
+In case you would like to see an alternative method to align the images, for
+instance images as \textbf{subfigures}, here it is. \par
+
+\begin{figure}[H]
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth,height=4cm]{./3.jpg}
+    \caption{Hostel 12,13,14}
+    \label{fig:f1}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth,height=4cm]{./4.jpg}
+    \caption{50th Inter-IIT meet at IITB}
+    \label{fig:f2}
+  \end{subfigure}
+  \caption{Both are places somewhere inside IITB}
+\end{figure}
+
+\section{Quotation and Citation (4 marks)}
+%We wil Quote something someday.
+\subsection{Quotation (2 marks)}
+The margins of the quotation environment are indented on both the left and the
+right. The text is justified at both margins. Leaving a blank line between text
+produces a new paragraph. The package \textbf{csquotes} offers a multilingual solution to quotations, with integration to citation mechanisms offered by BibTeX.
+This package allows one for example to switch languages and quotation styles
+according to babel language selections. \newline
+\begin{displayquote}
+``Unlike the quote environment, each paragraph is indented nor- mally.
+It’s important to remark that even if you are typing quotes on English
+there are different quotation marks used in English (UK) and English
+(US)''
+\end{displayquote}
+\subsection{Citation (2 marks)}
+\noindent Latex \cite{some} is a document preparation system for typesetting program. It is used to create different types of document structures. A Latex file (.tex) is created using any text editor (vim, emacs, gedit, etc.). There are also many LaTeX IDEs like Kile, TexStudio, etc.. The Latex code is then compiled which creates a standard (.pdf) file. Thus, the presentation of the document does not change on different machines.
+\par 
+\noindent Type style \cite{some2} is used to indicate logical structure. Emphasized text appears in
+italic style type and input in typewriter style. Type style is specified by three
+components: shape, series, and family. \newline
+\par
+There are two ways of producing a bibliography\cite{some3}. You can either produce
+a bibliography by manually listing the entries of the bibliography or producing
+it automatically using the BibTeX program of LaTeX. The bibliography style can
+be declared with bibliographystyle command, which may be issued anywhere
+after the preamble. The style is a file with .bst extension that determines how
+bibliography entries will appear at the output, such as if they are sorted or not,
+or how they are labeled etc. The extension .bib is not written explicitly. There
+are many standard bibliography style files. Two of them that are compatible
+with IIT thesis manual are plain.bst and alpha.bst. They are part of the LaTeX
+package; a student does not need to download it. The plain.bst and alpha.bst
+styles are explained below. The symbols in a math formula fall into different
+classes that correspond more or less to the part of speech each symbol would
+have if the formula were ex pressed in words. Certain spacing and position-
+ing cues are traditionally used for the different symbol classes to increase the
+readability of formulas. \cite{some4}
+\par 
+My citations are in proper order as per references ref1, ref2, ref3, and ref4.
+\pagebreak
+\section{Algorithm and Pseudo Code (22 marks)}
+\subsection{Listing (10 marks)}
+\par\noindent\rule{\textwidth}{0.4pt}
+\lstset{language=C++,
+                basicstyle=\ttfamily,
+                keywordstyle=\color{blue}\ttfamily,
+                stringstyle=\color{red}\ttfamily,
+                commentstyle=\color{green}\ttfamily,
+                morecomment=[l][\color{magenta}]{\#},
+                %breaklines=true
+}
+%\begin{large}
+{\setstretch{1}
+\begin{lstlisting}[language=C++]
+//Breadth First Search Function
+void BFS( list <long long int> queue , long long int length
+   ){
+    long long int v;
+    if(queue.empty())
+        return;
+    list<long long int> :: iterator i;
+    list<long long int> queue_temp;
+    while(!queue.empty()){
+        v=queue.front();
+        queue.pop_front();
+        for(i=adj[v].begin();i!=adj[v].end();i++){
+            if(!pro_ver[*i]){
+                result[*i]=length;
+                queue_temp.push_back(*i);
+                pro_ver[*i]=true;
+                adj[*i].remove(v);
+            }
+        }
+    }
+    BFS(queue_temp,length+1);
+}
+\end{lstlisting}
+}
+%\end{large}
+\subsection{Algorithmic (12 marks)}
+\begin{large}
+\begin{algorithm}[H]
+%\setstretch{1.35}
+\SetAlgoLined
+\KwInput{A graph Graph and a starting vertex root of Graph}
+\KwOutput{All vertices’s reachable from root labeled as explored.}
+ Breadth-First-Search(Graph, root): \\
+ \For{each node n in Graph:}{
+  n .\textbf{distance} = INFINITY \\
+  n .\textbf{parent} = NIL 
+ }
+ create empty \textbf{queue} Q \\
+ root.\textbf{distance} = 0 \\
+ Q.\textbf{enqueue}(root) \\
+ \While{Q is not empty :}{
+  current = Q.dequeue() \\
+  \For{each node n that is ad jacent to current}{
+  \If{n .\textbf{distance} == \textit{INFINITY}}{
+  n.\textbf{distance} = current.\textbf{distance} + 1 n.\textbf{parent} = current \\
+  Q.enqueue(n) \\ 
+  } 
+  }  
+ }
+ \caption{Breadth-First-Search}
+\end{algorithm}
+\end{large}
+\section{Tree (Bonus - 4 marks)}
+\Tree[ .If-statement [ .if ]
+               		 [ .exp ]
+			         [ .then ]
+			         [ .S [ .if [ .if ]
+			         			[ .else ]
+			         			[ .then ]
+			         			[ .S ]]]]
+\newpage
+\section{Exotic Features (Bonus - 6 marks)}
+\subsection{Epigraph Style (3 marks)}
+	
+%\chapter{Theory of Life}
+\noindent \textbf{Chapter 1: Theory of Life}
+\epigraph{"\textit {failure will never overtake me
+if my determination to succeed
+is strong enough.}"}{\textit{og mandino}}
+
+\subsection{Minipage (3 marks)}
+\fbox{
+\begin{minipage}[b]{.5\textwidth}
+\textit{\latex typesets a file of text using the
+TEX program and the \latex “macro
+package” for TEX. That is, it processes
+an input file containing the text of a
+document with interspersed commands
+that describe how the text should be
+formatted. \latex files are plain text
+that can be written in any reasonable
+editor. In the \latex input file, a com-
+mand name starts with a followed by
+either (a) a string of letters or (b) a sin-
+gle non-letter. Arguments contained in
+square brackets, [], are optional while
+arguments contained in braces, \{\}, are
+required. \latex is case sensitive. En-
+ter all commands in lower case unless
+explicitly directed to do otherwise.}
+\end{minipage}
+}
+\pagebreak
+\section{Bibliography (4 marks)}
+\noindent
+4 marks for references using .bib file, otherwise 2 marks.
+\bibliographystyle{unsrt}
+\bibliography{Q1}
+
+%\printbibliography
+%All good yo!
+\end{document}

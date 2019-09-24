@@ -1,0 +1,12 @@
+https://docs.python.org/3/library/re.html
+https://docs.python.org/3/library/argparse.html#invalid-arguments
+https://stackoverflow.com/questions/5943249/python-argparse-and-controlling-overriding-the-exit-status-code
+https://stackoverflow.com/questions/11927055/subclass-variables-with-the-same-name-of-superclass-ones
+https://stackoverflow.com/questions/29986185/python-argparse-dict-arg/42355279
+https://stackoverflow.com/questions/45840330/python-typeerror-quoting-must-be-an-integer
+https://stackoverflow.com/questions/82831/how-do-i-check-whether-a-file-exists-without-exceptions
+https://stackoverflow.com/questions/3887381/typeerror-nonetype-object-is-not-iterable-in-python
+https://stackoverflow.com/questions/20347766/pythonically-add-header-to-a-csv-file
+https://stackoverflow.com/questions/6852819/modifying-dictionary-values-while-iterating-with-dict-values-or-dict-itervalue
+https://stackoverflow.com/questions/4706499/how-do-you-append-to-a-file-in-python
+https://www.pythonforbeginners.com/dictionary/how-to-use-dictionaries-in-python
