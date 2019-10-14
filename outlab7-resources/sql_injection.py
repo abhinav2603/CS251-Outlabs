@@ -10,7 +10,7 @@ if i1 == 1:
 	i3=input()
 
 	if i2 == 0:
-		sql='DELETE FROM TEAM WHERE team_name ='+i3
+		sql='DELETE FROM TEAM WHERE team_name =\''+i3+'\''
 		cur.execute(sql)
 	elif i2 ==1:
 		sql='''DELETE FROM TEAM(team_name)
