@@ -1,0 +1,142 @@
+\documentclass{beamer}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{amsmath}
+\usepackage{kpfonts}
+\usepackage{boxedminipage}
+\usepackage{bcprules}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows}
+\usetikzlibrary{shapes.geometric}
+\usetheme{CambridgeUS}
+\tikzstyle{plainnode}=[draw=none,fill=none]
+\tikzstyle{rectanglenode}=[draw, rectangle, minimum height=5.3em, minimum width=9.5em]
+
+%%%%%%%%%%%%%%%%Title Page%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[Lambda Calculus]{Introduction to Beamer}
+\subtitle[]{}
+\author[F. last]{Firstname Lastname}
+\institute[IITB]{
+  Department of Computer Science and Engineering\\
+  IIT Bombay.\\
+  Powai, Mumbai - 400076\\[1ex]
+  \texttt{userid@cse.iitb.ac.in}
+}
+\date[\today]{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{exercise}{Exercise}
+\begin{document}
+%--- the titlepage frame -------------------------%
+\begin{frame}[plain]
+  \titlepage 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{\bf  This is the title}
+Beamer is a \LaTeX \:class for preparing presentations.
+
+\begin{enumerate}
+\item Slides are called frames in Beamer.
+\item This is the usual ordered list in \LaTeX.
+\item Following slides will contain random content which will show you various ways of using it. You need to replicate it.
+\item Of course! we will give you boilerplate code!
+\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Type Rules}
+\begin{center}
+\begin{figure}[h!]
+\includegraphics[scale=0.5]{type-lattice.pdf}
+\caption{This is the caption.}
+\end{figure}
+\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Type Rules}
+\begin{itemize}
+\item A \textit{substitution} is a list of pairs denoted as \textit{S} = \{\begin{math}\alpha_1/\tau_1 \ldots \alpha_n/\tau_n \end{math}\}.
+\item A substitution \textit{S} applied on a type expression \(\sigma\),denoted by \textit{S}(\(\sigma\)) involves simultaneous substitution of the variables \(\alpha_1 \ldots \alpha_n\), if they occur free in \(\sigma\), by the corresponding type expressions \(\tau_1\) \(\ldots \tau_n\).
+\end{itemize}
+\begin{block}{Definition}
+Let \( \sigma \) = \( \forall \alpha_1 \ldots \alpha_m \).\( \tau \) and \( \sigma^\prime\) = \(\forall\beta_1 \ldots \beta_m\).\(\tau^\prime\). Then \(\sigma^\prime\) is a {\it generic instance} of \(\sigma\), iff there is a substitution \textit{S} acting only on \{\(\alpha_1 \ldots \alpha_m\)\} such that \(\tau^\prime\) = \textit{S}(\(\tau\)) and no \(\beta_i\) is free in \(\sigma\).
+\end{block}
+\begin{itemize}
+\item Clearly,the restriction that no \(\beta_i\) is free in \(\sigma\) is needed, else we would have absurdities like \(\alpha\) \(\rightarrow\) {\it Int} \(\leq \forall \alpha\).\(\alpha \rightarrow\) {\it Int}.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{\bf Recapitulation -- Type rules for $\lambda_2$}
+\vspace{-15pt}
+\begin{equation}
+\tag{V\scriptsize{AR}}
+\Gamma \cup \{x :: \sigma\} \vdash x :: \sigma
+\end{equation}
+\vspace{-10pt}
+\begin{equation}
+\tag{C\scriptsize{ON}}
+\Gamma \cup \{c :: \sigma\} \vdash c :: \sigma
+\end{equation}
+\vspace{-5pt}
+\begin{equation}
+\tag{I\scriptsize{NST}}
+\frac{\Gamma \vdash M :: \sigma \qquad \sigma^\prime \geq \sigma}{\Gamma \vdash M :: \sigma^\prime}
+\end{equation}
+\vspace{1pt}
+\begin{equation}
+\tag{G\scriptsize{EN}}
+\frac{\Gamma \vdash M :: \sigma \qquad \alpha \notin FV(\Gamma)}{\Gamma \vdash M :: \forall \alpha.\sigma}
+\end{equation}
+\vspace{1pt}
+\begin{equation}
+\tag{M-A\scriptsize{PP}}
+\frac{\Gamma \vdash M :: \tau_1 \rightarrow \tau_2 \qquad \Gamma \vdash N :: \tau_1}{\Gamma \vdash M ~N :: \tau_2}
+\end{equation}
+\\
+\begin{equation}
+\tag{M-A\scriptsize{BS}}
+\frac{\Gamma,x :: \tau_1 \vdash M :: \tau_2}{\Gamma \vdash \lambda x.M :: \tau_1 \rightarrow \tau_2}
+\end{equation}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{\bf Hindley-Milner - Type checking variables}
+\begin{enumerate}
+\item[1:] $t$ {\bf is a variable} $x$ 
+\begin{figure}[h]
+\begin{tikzpicture}[thick]
+\node[plainnode] (start) {};
+\node[rectanglenode, right = 4em of start] (mid) {\begin{small}$x$\end{small}};
+\node[plainnode, right = 5.5em of mid, yshift = 1.05em] (end1) {};
+\node[plainnode, right = 5.5em of mid, yshift = -1.75em] (end2) {};
+\node[plainnode, below=0.2em of mid](plain){\begin{small}\(\Gamma x = \forall\alpha_1,\ldots\alpha_n\cdot\tau\)\end{small}};
+\draw (start) edge[->,>=stealth] (mid) node[above,yshift=0.1cm] {\begin{small}\(\Gamma\)\end{small}};
+\draw (mid) edge[->,>=stealth, out = 16, looseness=0] (end1) node[above, xshift=4.4cm, yshift=0.6cm]{\begin{small}\( \tau[\alpha_1/\beta_1,\ldots \alpha_n/\beta_n], ~\beta_1, \ldots \beta_n \notin \Gamma \)\end{small}};
+\draw (mid) edge[->,>=stealth, out = -16, looseness=0] (end2) node[below, xshift=4.2cm, yshift=-0.6cm] {\begin{small}The identity substitution $\theta_{id}$\end{small}};
+\end{tikzpicture}
+\label{fig:sat-reduction-edges}
+\end{figure}
+\begin{itemize}
+\item \(\beta_1\),\(\ldots\),\(\beta_n\) are fresh variables.
+\item Reason for monomorphising the type of $x$: We try to find the type of
+a variable only in the context of an application, and our application
+is monomorphic.
+\end{itemize}
+\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{\bf Hindley-Milner - Type checking variables}
+\begin{enumerate}
+\item[1] Typecheck \(e_1\) with the initial environment \(\Gamma\). Result is \(\tau_1\) and \(\theta_1\).
+\item[2] Typecheck \(e_2\) with the environment \(\theta_1 $ $ \Gamma\). Result is \(\tau_2\) and \(\theta_2\).
+\item[3] Unify \(\theta_2 $ $ \tau_1\) and \(\tau_2 \rightarrow \alpha\). Assume that unifier is \(\theta\). And the unified term (\(\theta $ $ \alpha\)) is \(\tau_3\).
+\item[4] Type of the application is \(\tau_3\) and the final substitution is \(\theta \circ \theta_2 \circ \theta_1 \).
+\end{enumerate}
+\end{frame}
+\end{document}
